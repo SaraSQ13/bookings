@@ -5,6 +5,15 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const db = require("./db/db");
 const router = require("./router");
+const cors = require('cors');
+
+
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}
 
 var app = express();
 
@@ -17,6 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors(corsOptions));
 
 // app.use("/", indexRouter);
 // app.use("/customers", customersRouter);
@@ -24,7 +34,9 @@ app.use(router);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  res.status(404).send({ 
+        message: `There is nothing here`,
+  });
 });
 
 // error handler
