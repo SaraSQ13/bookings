@@ -1,4 +1,5 @@
 const { customers } = require("../models.js");
+const { Op } = require("sequelize");
 
 const customersController = {};
 
