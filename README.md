@@ -34,7 +34,7 @@ A mini API that serves data with entity relationships for hotel bookings. Made w
 Entity-relationship diagram that was generated with MYSQL Workbench:
 <br>
 
-![diagram](./my-server/assets/reservas.png)
+![diagram](../my-server/assets/reservas.png)
 <br>
 
 
