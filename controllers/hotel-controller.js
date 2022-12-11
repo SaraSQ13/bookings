@@ -1,4 +1,4 @@
-const { hotel } = require("../models/index");
+const { hotel, bookings, customers } = require("../models.js");
 const { Op } = require("sequelize");
 
 const hotelController = {};
@@ -6,7 +6,10 @@ const hotelController = {};
 
 hotelController.getAll = async (req, res)=>{
   try {
-    const data = await hotel.findAll();
+    const data = await hotel.findAll({
+      include:[{model: bookings, as: "bookings", 
+      include:{model: customers, as: "id_customers_customers"}}]
+    });
     res.json(data);
     }catch(error){
     res.status(500).send({
@@ -20,7 +23,10 @@ hotelController.getById = async (req, res) => {
    const id = req.params.id;
 
    try {
-      const data = await hotel.findByPk(id);
+      const data = await hotel.findByPk(id, {
+         include:[{model: bookings, as: "bookings", 
+         include:{model: customers, as: "id_customers_customers"}}]
+       });
 
       if (data) {
          res.json(data);
@@ -41,6 +47,8 @@ hotelController.getByName = async (req, res) => {
    try {
       const data = await hotel.findAll({
          where: { name: { [Op.like]: `%${name}%` } },
+         include: [{ model: bookings, as: "bookings",
+        include:{model: customers, as: "id_customers_customers"}}]
       });
 
       if(data) {
@@ -63,6 +71,8 @@ hotelController.getByLocation = async (req, res) => {
    try {
       const data = await hotel.findAll({
          where: { location: { [Op.like]: `%${location}%` } },
+         include: [{ model: bookings, as: "bookings",
+        include:{model: customers, as: "id_customers_customers"}}]
       });
 
       if(data) {
@@ -85,6 +95,8 @@ hotelController.getByCity = async (req, res) => {
    try {
       const data = await hotel.findAll({
          where: { city: { [Op.like]: `%${city}%` } },
+         include: [{ model: bookings, as: "bookings",
+        include:{model: customers, as: "id_customers_customers"}}]
       });
 
       if(data) {

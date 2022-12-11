@@ -8,10 +8,10 @@ router.get("/", bookingsController.getAll);
 /* GET hotel by id. */
 router.get("/:id", bookingsController.getById);
 
-/* GET hotel by name. */
+/* GET hotel by check in. */
 router.get("/checkin/:checkin", bookingsController.getByCheckin);
 
-/* GET hotel by location. */
+/* GET hotel by check out. */
 router.get("/checkout/:checkout", bookingsController.getByCheckout);
 
 module.exports = router;

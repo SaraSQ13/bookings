@@ -1,11 +1,14 @@
-const { customers, bookings } = require("../models.js");
+const { customers, bookings, hotel } = require("../models.js");
 const { Op } = require("sequelize");
 
 const customersController = {};
 
 customersController.getAll = async (req, res) => {
   try {
-    const data = await customers.findAll();
+    const data = await customers.findAll({
+      include:[{model: bookings, as: "bookings", 
+      include:{model: hotel, as: "id_hotel_hotel"}}]
+    });
 
     res.json(data);
   } catch (error) {
@@ -20,7 +23,8 @@ customersController.getById = async (req, res) => {
 
   try {
     const data = await customers.findByPk(id,{
-      include: [{ model: bookings, as: "bookings"}],
+      include: [{ model: bookings, as: "bookings",
+      include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
     if (data) {
@@ -41,7 +45,10 @@ customersController.getByName = async (req, res) => {
   const name = req.params.name;
   try {
     const data = await customers.findAll({
-      where: { name: { [Op.like]: `%${name}%` } },
+      where: { name: { [Op.like]: `%${name}%`}},
+        include: [{ model: bookings, as: "bookings",
+        include:{model: hotel, as: "id_hotel_hotel"}}],
+    
     });
 
     if (data) {
@@ -63,6 +70,8 @@ customersController.getByLastname = async (req, res) => {
   try {
     const data = await customers.findAll({
       where: { name: { [Op.like]: `%${lastname}%` } },
+      include: [{ model: bookings, as: "bookings",
+        include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
     if (data) {
@@ -83,6 +92,8 @@ customersController.getByIdCard = async (req, res) => {
   try {
     const data = await customers.findAll({
       where: { id_card: { [Op.like]: `%${id_card}%` } },
+      include: [{ model: bookings, as: "bookings",
+        include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
     if (data) {
@@ -103,6 +114,8 @@ customersController.getByPhone = async (req, res) => {
   try {
     const data = await customers.findAll({
       where: { phone: { [Op.like]: `%${phone}%` } },
+      include: [{ model: bookings, as: "bookings",
+        include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
     if (data) {
@@ -123,6 +136,8 @@ customersController.getByEmail = async (req, res) => {
   try {
     const data = await customers.findAll({
       where: { email: { [Op.like]: `%${email}%` } },
+      include: [{ model: bookings, as: "bookings",
+        include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
     if (data) {
@@ -139,73 +154,7 @@ customersController.getByEmail = async (req, res) => {
   }
 };
 
-// AlumnoController.getByName = async (req, res) => {
-//    const name = req.params.name;
 
-//    try {
-//       const data = await Alumno.findAll({
-//          where: { name: { [Op.like]: `%${name}%` } },
-//          include: [{ model: Nacionalidad, as: "id_nationality_nacionalidad" }],
-//       });
-
-//       if (data.length > 0) {
-//          res.json(data);
-//       } else {
-//          res.status(404).send({
-//             message: `Cannot find user with name=${name}`,
-//          });
-//       }
-//    } catch (error) {
-//       res.status(500).send({
-//          message: `Error retreiving user retrieving with name=${name}.`,
-//       });
-//    }
-// };
 
 module.exports = customersController;
 
-// AlumnoController.getById = async (req, res) => {
-//    const id = req.params.id;
-
-//    try {
-//       const data = await Alumno.findByPk(id, {
-//          include: [{ model: Nacionalidad, as: "id_nationality_nacionalidad" }],
-//       });
-
-//       if (data) {
-//          res.json(data);
-//       } else {
-//          res.status(404).send({
-//             message: `Cannot find user with id=${id}`,
-//          });
-//       }
-//    } catch (error) {
-//       res.status(500).send({
-//          message: `Error retreiving user retrieving with id=${id}.`,
-//       });
-//    }
-// };
-
-// AlumnoController.getByName = async (req, res) => {
-//    const name = req.params.name;
-
-//    try {
-//       const data = await Alumno.findAll({
-//          where: { name: { [Op.like]: `%${name}%` } },
-//          include: [{ model: Nacionalidad, as: "id_nationality_nacionalidad" }],
-//       });
-
-//       if (data.length > 0) {
-//          res.json(data);
-//       } else {
-//          res.status(404).send({
-//             message: `Cannot find user with name=${name}`,
-//          });
-//       }
-//    } catch (error) {
-//       res.status(500).send({
-//          message: `Error retreiving user retrieving with name=${name}.`,
-//       });
-//    }
-// };
-// module.exports = AlumnoController;

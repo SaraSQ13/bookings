@@ -1,4 +1,4 @@
-const { bookings } = require("../models/index");
+const { bookings, customers, hotel } = require("../models.js");
 const { Op } = require("sequelize");
 
 const bookingsController = {};
@@ -19,7 +19,10 @@ bookingsController.getById = async (req, res) => {
    const id = req.params.id;
 
    try {
-      const data = await bookings.findByPk(id);
+      const data = await bookings.findByPk(id, {
+         include:[{model: customers, as: "id_customers_customers", 
+         include:{model: hotel, as: "id_hotel_hotel"}}]
+       });
 
       if (data) {
          res.json(data);
@@ -40,6 +43,8 @@ bookingsController.getByCheckin = async (req, res) => {
    try {
       const data = await hotel.findAll({
          where: { checkin: { [Op.like]: `%${checkin}%` } },
+         include:[{model: customers, as: "id_customers_customers", 
+         include:{model: hotel, as: "id_hotel_hotel"}}]
       });
 
       if(data) {
@@ -62,6 +67,8 @@ bookingsController.getByCheckout = async (req, res) => {
    try {
       const data = await bookings.findAll({
          where: { bookings: { [Op.like]: `%${checkout}%` } },
+         include:[{model: customers, as: "id_customers_customers", 
+         include:{model: hotel, as: "id_hotel_hotel"}}]
       });
 
       if(data) {
