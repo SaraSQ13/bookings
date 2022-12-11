@@ -6,10 +6,7 @@ const hotelController = {};
 
 hotelController.getAll = async (req, res)=>{
   try {
-    const data = await hotel.findAll({
-      include:[{model: bookings, as: "bookings", 
-      include:{model: customers, as: "id_customers_customers"}}]
-    });
+    const data = await hotel.findAll();
     res.json(data);
     }catch(error){
     res.status(500).send({
