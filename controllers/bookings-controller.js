@@ -19,10 +19,7 @@ bookingsController.getById = async (req, res) => {
    const id = req.params.id;
 
    try {
-      const data = await bookings.findByPk(id, {
-         include:[{model: customers, as: "id_customers_customers", 
-         include:{model: hotel, as: "id_hotel_hotel"}}]
-       });
+      const data = await bookings.findByPk(id);
 
       if (data) {
          res.json(data);
@@ -41,11 +38,7 @@ bookingsController.getById = async (req, res) => {
 bookingsController.getByCheckin = async (req, res) => {
    const checkin = req.params.checkin;
    try {
-      const data = await hotel.findAll({
-         where: { checkin: { [Op.like]: `%${checkin}%` } },
-         include:[{model: customers, as: "id_customers_customers", 
-         include:{model: hotel, as: "id_hotel_hotel"}}]
-      });
+      const data = await hotel.findAll();
 
       if(data) {
          res.json(data);
@@ -65,11 +58,7 @@ bookingsController.getByCheckin = async (req, res) => {
 bookingsController.getByCheckout = async (req, res) => {
    const checkout = req.params.checkout;
    try {
-      const data = await bookings.findAll({
-         where: { bookings: { [Op.like]: `%${checkout}%` } },
-         include:[{model: customers, as: "id_customers_customers", 
-         include:{model: hotel, as: "id_hotel_hotel"}}]
-      });
+      const data = await bookings.findAll();
 
       if(data) {
          res.json(data);

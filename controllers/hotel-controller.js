@@ -20,10 +20,7 @@ hotelController.getById = async (req, res) => {
    const id = req.params.id;
 
    try {
-      const data = await hotel.findByPk(id, {
-         include:[{model: bookings, as: "bookings", 
-         include:{model: customers, as: "id_customers_customers"}}]
-       });
+      const data = await hotel.findByPk(id);
 
       if (data) {
          res.json(data);
@@ -42,11 +39,7 @@ hotelController.getById = async (req, res) => {
 hotelController.getByName = async (req, res) => {
    const name = req.params.name;
    try {
-      const data = await hotel.findAll({
-         where: { name: { [Op.like]: `%${name}%` } },
-         include: [{ model: bookings, as: "bookings",
-        include:{model: customers, as: "id_customers_customers"}}]
-      });
+      const data = await hotel.findAll();
 
       if(data) {
          res.json(data);
@@ -66,11 +59,7 @@ hotelController.getByName = async (req, res) => {
 hotelController.getByLocation = async (req, res) => {
    const location = req.params.location;
    try {
-      const data = await hotel.findAll({
-         where: { location: { [Op.like]: `%${location}%` } },
-         include: [{ model: bookings, as: "bookings",
-        include:{model: customers, as: "id_customers_customers"}}]
-      });
+      const data = await hotel.findAll();
 
       if(data) {
          res.json(data);
@@ -90,11 +79,7 @@ hotelController.getByLocation = async (req, res) => {
 hotelController.getByCity = async (req, res) => {
    const city = req.params.city;
    try {
-      const data = await hotel.findAll({
-         where: { city: { [Op.like]: `%${city}%` } },
-         include: [{ model: bookings, as: "bookings",
-        include:{model: customers, as: "id_customers_customers"}}]
-      });
+      const data = await hotel.findAll();
 
       if(data) {
          res.json(data);
