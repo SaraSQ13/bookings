@@ -58,8 +58,9 @@ Install packages npm:
 ```
 npm install
 ```
+## 🎈 Usage <a name="usage"></a>
 
-Then start the dev server with this command:
+Start the dev server with this command:
 
 ```
 npm run dev
@@ -67,9 +68,37 @@ npm run dev
 
 
 
-## 🎈 Usage <a name="usage"></a>
+## 🎈 Endpoints <a name="usage"></a>
 
 Use the endpoints to navigate for the differents types of data of the API
+
+|GET  | Customers            | Description              |
+| ----| -------------------- |--------------------------|
+| Get | /customers           |Show customers            |
+| Get | /:id                 |show customers by id      |
+| Get | /name/:name          |Show customers by name    |
+| Get | /lastname/:lastname  |show customers by lastname|
+| Get | /id_card/:id_card    |Show customers by id card |
+| Get | /phone/:phone        |show customers by phone   |
+| Get | /email/:email        |Show customers by email   |
+
+|GET  | Hotels               | Description              |
+| ----| -------------------- |--------------------------|
+| Get | /hotel               |Show hotel                |
+| Get | /:id                 |show hotels by id         |
+| Get | /name/:name          |Show hotels by name       |
+| Get | /location/:location  |show hotels by location   |
+| Get | /city/:city          |Show hotels by city       |
+
+|GET  | Bookings             | Description              |
+| ----| -------------------- |--------------------------|
+| Get | /bookings            |Show bookings             |
+| Get | /:id                 |show bookings by id       |
+| Get | /checkin/:chekin     |Show bookings by chekings |
+| Get | /checkout/:checkout  |show bookingd by checkout |
+
+
+
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
