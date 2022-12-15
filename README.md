@@ -11,7 +11,7 @@
 
 ---
 
-<p align="center"> A mini API that serves data from hotel bookings.
+<p align="center"> API that serves data from hotel bookings.
     <br> 
 </p>
 
@@ -26,10 +26,9 @@
 
 
 ## 🧐 About <a name = "about"></a>
+API that serves data with entity relationships for hotel bookings. Made with Express, Sequelize and MYSQL. Project from GeeksHubs Academy like Full stack developer student.
 
-A mini API that serves data with entity relationships for hotel bookings. Made with Express, Sequelize and MYSQL. Project from GeeksHubs Academy like Full stack developer student.
-
-## Preview
+## Design Database
 <hr>
 Entity-relationship diagram that was generated with MYSQL Workbench:
 <br>
@@ -46,7 +45,7 @@ Entity-relationship diagram that was generated with MYSQL Workbench:
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/): ^12.0.0
-- [NPM](https://npmjs.org/) or any other Node.js package manager.
+
 
 <hr>
 
@@ -66,36 +65,51 @@ Start the dev server with this command:
 npm run dev
 ```
 
+Run http://localhost:3000/ in your borwser to do the tests.
+<br>
+
+Start the production server with this command:
+
+```
+npm start
+```
+
 
 
 ## 🎈 Endpoints <a name="usage"></a>
 
 Use the endpoints to navigate for the differents types of data of the API
 
-|GET  | Customers            | Description              |
-| ----| -------------------- |--------------------------|
-| Get | /customers           |Show customers            |
-| Get | /:id                 |show customers by id      |
-| Get | /name/:name          |Show customers by name    |
-| Get | /lastname/:lastname  |show customers by lastname|
-| Get | /id_card/:id_card    |Show customers by id card |
-| Get | /phone/:phone        |show customers by phone   |
-| Get | /email/:email        |Show customers by email   |
+### Customers
 
-|GET  | Hotels               | Description              |
-| ----| -------------------- |--------------------------|
-| Get | /hotel               |Show hotel                |
-| Get | /:id                 |show hotels by id         |
-| Get | /name/:name          |Show hotels by name       |
-| Get | /location/:location  |show hotels by location   |
-| Get | /city/:city          |Show hotels by city       |
+|Method| Route                  | Description              |
+| ---- | -------------------- |--------------------------|
+| Get  | /customers           |Show customers            |
+| Get  | /customers/id                  |show customers by id      |
+| Get  | /customers/name/name           |Show customers by name    |
+| Get  | /customers/lastname/lastname   |show customers by lastname|
+| Get  | /customers/id_card/id_card     |Show customers by id card |
+| Get  | /customers/phone/phone         |show customers by phone   |
+| Get  | /customers/email/email         |Show customers by email   |
 
-|GET  | Bookings             | Description              |
+### Hotel
+
+|GET   | Route               | Description              |
+| ---- | -------------------- |--------------------------|
+| Get  | /hotel               |Show hotel                |
+| Get  | /hotel/id                  |show hotels by id         |
+| Get  | /hotel/name/name           |Show hotels by name       |
+| Get  | /hotel/location/location   |show hotels by location   |
+| Get  | /hotel/city/city           |Show hotels by city       |
+
+### Bookings
+
+|GET  | Route            | Description              |
 | ----| -------------------- |--------------------------|
 | Get | /bookings            |Show bookings             |
-| Get | /:id                 |show bookings by id       |
-| Get | /checkin/:chekin     |Show bookings by chekings |
-| Get | /checkout/:checkout  |show bookingd by checkout |
+| Get | /bookings/id                  |show bookings by id       |
+| Get | /bookings/checkin/chekin      |Show bookings by chekings |
+| Get | /bookings/checkout/checkout   |show bookingd by checkout |
 
 
 
@@ -107,8 +121,8 @@ https://bookings-production-2f33.up.railway.app/
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [MYSQL](https://www.mysql.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Express](https://expressjs.com/) - Server Module
+- [NodeJs](https://nodejs.org/en/) - JavaScript runtime environment
 - [Sequelize](https://sequelize.org/) - ORM
 
 

@@ -96,7 +96,7 @@ customersController.getByIdCard = async (req, res) => {
         include:{model: hotel, as: "id_hotel_hotel"}}],
     });
 
-    if (data) {
+    if (data.length>0) {
       res.json(data);
     } else {
       res.status(404).send({

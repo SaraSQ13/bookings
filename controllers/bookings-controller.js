@@ -38,9 +38,11 @@ bookingsController.getById = async (req, res) => {
 bookingsController.getByCheckin = async (req, res) => {
    const checkin = req.params.checkin;
    try {
-      const data = await hotel.findAll();
+      const data = await bookings.findAll({
+         where:{ checkin:{[Op.like]:`%${checkin}%`}},
+      });
 
-      if(data) {
+      if(data.length>0) {
          res.json(data);
       } else {
          res.status(404).send({
@@ -58,7 +60,9 @@ bookingsController.getByCheckin = async (req, res) => {
 bookingsController.getByCheckout = async (req, res) => {
    const checkout = req.params.checkout;
    try {
-      const data = await bookings.findAll();
+      const data = await bookings.findAll({
+         where:{ checkout:{[Op.like]:`%${checkout}%`}},
+      });
 
       if(data) {
          res.json(data);
